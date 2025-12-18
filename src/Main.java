@@ -25,6 +25,16 @@ class Main extends JFrame {
         JButton button9 = new JButton("9");
         JButton button0 = new JButton("0");
         setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        JPanel panel = new JPanel();
+        add(panel);
+        setVisible(true);
+        ImageIcon spriteIcon = new ImageIcon("src/images/full.png");
+        JLabel spriteLabel = new JLabel(spriteIcon);
+        panel.add(spriteLabel);
+        panel.setLayout(null);
+        spriteLabel.setBounds(50, 50, 500, 500);
         //JTextField textField = new JTextField(20);
         //textField.setText("touch the butten !");
         //textField.setBounds(900,400, 200, 50);
@@ -58,6 +68,7 @@ class Main extends JFrame {
        m.repaint();
 
 
+
     }
     @Override
     public void paint(Graphics g)
@@ -79,5 +90,7 @@ class Main extends JFrame {
             }
             f++;
         }
+        Image spriteIcon = new Image("src/images/full.png");
+        g.drawImage(spriteIcon, 0, 0, 500, 500, null);
     }
 }
