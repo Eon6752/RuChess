@@ -14,16 +14,6 @@ class Main extends JFrame {
 
         super("title");
         setSize(1920, 1080);
-        JButton button1 = new JButton("1");
-        JButton button2 = new JButton("2");
-        JButton button3 = new JButton("3");
-        JButton button4 = new JButton("4");
-        JButton button5 = new JButton("5");
-        JButton button6 = new JButton("6");
-        JButton button7 = new JButton("7");
-        JButton button8 = new JButton("8");
-        JButton button9 = new JButton("9");
-        JButton button0 = new JButton("0");
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -35,30 +25,7 @@ class Main extends JFrame {
         panel.add(spriteLabel);
         panel.setLayout(null);
         spriteLabel.setBounds(50, 50, 500, 500);
-        //JTextField textField = new JTextField(20);
-        //textField.setText("touch the butten !");
-        //textField.setBounds(900,400, 200, 50);
-        //button1.setBounds(800, 500, 100, 20);
-        //button2.setBounds(1100, 500, 100, 20);
-        add(button1);
-        add(button2);
 
-        //add(textField);
-
-
-//        button1.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                count++;
-//            }
-//        });
-//        button2.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                textField.setText("do it");
-//                System.out.println(count);
-//            }
-//        });
     }
 
     public static void main(String[] args) {
@@ -69,13 +36,14 @@ class Main extends JFrame {
 
 
 
+
     }
     @Override
     public void paint(Graphics g)
     {
         int f=0;
 
-        Color c1 = new Color(0,0,0);
+        Color c1 = new Color(255, 0, 0);
         for(int i=0;i<800;i+=100){
             for(int j=0;j<800;j+=100){
                 if (f%2==0) {
@@ -91,6 +59,7 @@ class Main extends JFrame {
             f++;
         }
         Image spriteIcon = new Image("src/images/full.png");
-        g.drawImage(spriteIcon, 0, 0, 500, 500, null);
+        g.drawImage(Image,"src/images/full.png", 0, 0, 500, 500, null);
     }
+
 }
