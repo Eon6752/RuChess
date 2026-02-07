@@ -28,6 +28,15 @@ import java.awt.Graphics;
  class Game extends JFrame {
     int count = 0;
 
+     String[][] arr =
+             {{"brook","bponi","bofficer","bqween","bking","bofficer","bponi","brook"},
+                     {"b","b","b","b","b","b","b","b"},
+                     {"0","0","0","0","0","0","0","0"},
+                     {"0","0","0","0","0","0","0","0"},
+                     {"0","0","0","0","0","0","0","0"},
+                     {"0","0","0","0","0","0","0","0"},
+                     {"w","w","w","w","w","w","w","w"},
+                     {"wrook","wponi","wofficer","wqween","wking","wofficer","wponi","wrook"}};
     public Game() {
 
         super("title");
@@ -43,6 +52,9 @@ import java.awt.Graphics;
         panel.add(spriteLabel);
         panel.setLayout(null);
         spriteLabel.setBounds(50, 50, 500, 500);
+
+
+
 
     }
 
@@ -137,35 +149,76 @@ import java.awt.Graphics;
             }
             f++;
         }
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                if(arr[i][j]=="b"){
+                    g.drawImage(image2, i + 27, 210, 23*2, 40*2, null);
+                }
+                if(arr[i][j]=="w"){
+                    g.drawImage(wimage2, i + 27, 210, 23*2, 40*2, null);
+                }
+                if(arr[i][j]=="brook"){
+                    g.drawImage(image6, 633, 105, 34, 90, null);
+                }
+                if(arr[i][j]=="wrook"){
+                    g.drawImage(wimage6, 633, 105, 34, 90, null);
+                }
+                if(arr[i][j]=="bponi"){
+                    g.drawImage(image5, i + 27, 210, 23*2, 40*2, null);
+                }
+                if(arr[i][j]=="wponi"){
+                    g.drawImage(wimage5, i + 27, 210, 23*2, 40*2, null);
+                }
+                if(arr[i][j]=="bofficer"){
+                    g.drawImage(image4, 633, 105, 34, 90, null);
+                }
+                if(arr[i][j]=="wofficer"){
+                    g.drawImage(wimage4, 633, 105, 34, 90, null);
+                }
+                if(arr[i][j]=="bqween"){
+                    g.drawImage(image3, i + 27, 210, 23*2, 40*2, null);
+                }
+                if(arr[i][j]=="wqween"){
+                    g.drawImage(wimage3, i + 27, 210, 23*2, 40*2, null);
+                }
+                if(arr[i][j]=="bking"){
+                    g.drawImage(image1, 633, 105, 34, 90, null);
+                }
+                if(arr[i][j]=="wking"){
+                    g.drawImage(wimage1, 633, 105, 34, 90, null);
+                }
+            }
+
+        }
         //Image spriteIcon = new Image("src/images/full.png");
-        g.drawImage(image, 1000, 500, 500, 500, null);
-        g.drawImage(image1, 1033, 105, 34, 90, null);
-        g.drawImage(image3, 933, 105, 34, 90, null);
-        g.drawImage(image4, 833, 105, 34, 90, null);
-        g.drawImage(image4, 1133, 105, 34, 90, null);
-        g.drawImage(image5, 733, 105, 34, 90, null);
-        g.drawImage(image5, 1233, 105, 34, 90, null);
-        g.drawImage(image6, 633, 105, 34, 90, null);
-        g.drawImage(image6, 1333, 105, 34, 90, null);
-
-
-        g.drawImage(image, 1000, 500, 500, 500, null);
-        g.drawImage(wimage1, 1033, 805, 34, 90, null);
-        g.drawImage(wimage3, 933, 805, 34, 90, null);
-        g.drawImage(wimage4, 833, 805, 34, 90, null);
-        g.drawImage(wimage4, 1133, 805, 34, 90, null);
-        g.drawImage(wimage5, 733, 805, 34, 90, null);
-        g.drawImage(wimage5, 1233, 805, 34, 90, null);
-        g.drawImage(wimage6, 633, 805, 34, 90, null);
-        g.drawImage(wimage6, 1333, 805, 34, 90, null);
-        for (int i = 600; i < 1400; i += 100) {
-            g.drawImage(image2, i + 27, 210, 23*2, 40*2, null);
-
-        }
-        for (int i = 600; i < 1400; i += 100) {
-            g.drawImage(wimage2, i + 27, 710, 23*2, 40*2, null);
-
-        }
+//        g.drawImage(image, 1000, 500, 500, 500, null);
+//        g.drawImage(image1, 1033, 105, 34, 90, null);
+//        g.drawImage(image3, 933, 105, 34, 90, null);
+//        g.drawImage(image4, 833, 105, 34, 90, null);
+//        g.drawImage(image4, 1133, 105, 34, 90, null);
+//        g.drawImage(image5, 733, 105, 34, 90, null);
+//        g.drawImage(image5, 1233, 105, 34, 90, null);
+//        g.drawImage(image6, 633, 105, 34, 90, null);
+//        g.drawImage(image6, 1333, 105, 34, 90, null);
+//
+//
+//        g.drawImage(image, 1000, 500, 500, 500, null);
+//        g.drawImage(wimage1, 1033, 805, 34, 90, null);
+//        g.drawImage(wimage3, 933, 805, 34, 90, null);
+//        g.drawImage(wimage4, 833, 805, 34, 90, null);
+//        g.drawImage(wimage4, 1133, 805, 34, 90, null);
+//        g.drawImage(wimage5, 733, 805, 34, 90, null);
+//        g.drawImage(wimage5, 1233, 805, 34, 90, null);
+//        g.drawImage(wimage6, 633, 805, 34, 90, null);
+//        g.drawImage(wimage6, 1333, 805, 34, 90, null);
+//        for (int i = 600; i < 1400; i += 100) {
+//            g.drawImage(image2, i + 27, 210, 23*2, 40*2, null);
+//
+//        }
+//        for (int i = 600; i < 1400; i += 100) {
+//            g.drawImage(wimage2, i + 27, 710, 23*2, 40*2, null);
+//
+//        }
     }
 
 }
