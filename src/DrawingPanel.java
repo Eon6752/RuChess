@@ -1,10 +1,16 @@
 import java.awt.Graphics;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;// [2](https://reintech.io/blog/java-2d-graphics-drawing-shapes-text-images)
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 //
 //public class Game extends JPanel {
 //    private Image image;
@@ -26,49 +32,135 @@ import java.awt.Color;
 import java.awt.Graphics;
 
  class Game extends JFrame {
-    int count = 0;
-
+     int count = 0;
+     int dx=-100,dy=-100,dxl,dyl,ax,ay;
+     int f=0;
+     String last;
      String[][] arr =
-             {{"brook","bponi","bofficer","bqween","bking","bofficer","bponi","brook"},
-                     {"b","b","b","b","b","b","b","b"},
-                     {"0","0","0","0","0","0","0","0"},
-                     {"0","0","0","0","0","0","0","0"},
-                     {"0","0","0","0","0","0","0","0"},
-                     {"0","0","0","0","0","0","0","0"},
-                     {"w","w","w","w","w","w","w","w"},
-                     {"wrook","wponi","wofficer","wqween","wking","wofficer","wponi","wrook"}};
-    public Game() {
+             {{"brook", "b", "0", "0", "0", "0", "w", "wrook"},
+                     {"bponi", "b", "0", "0", "0", "0", "w", "wponi"},
+                     {"bofficer", "b", "0", "0", "0", "0", "w", "wofficer"},
+                     {"bqween", "b", "0", "0", "0", "0", "w", "wqween"},
+                     {"bking", "b", "0", "0", "0", "0", "w", "wking"},
+                     {"bofficer", "b", "0", "0", "0", "0", "w", "wofficer"},
+                     {"bponi", "b", "0", "0", "0", "0", "w", "wponi"},
+                     {"brook", "b", "0", "0", "0", "0", "w", "wrook"}};
+     int[][] dop = {{27, 13}, {33, 7}, {27, 13}, {33, 7}, {30, 5}, {33, 7}};
 
-        super("title");
-        setSize(1920, 1080);
-        setLayout(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        JPanel panel = new JPanel();
-        add(panel);
-        setVisible(true);
-        ImageIcon spriteIcon = new ImageIcon("src/images/full.png");
-        JLabel spriteLabel = new JLabel(spriteIcon);
-        panel.add(spriteLabel);
-        panel.setLayout(null);
-        spriteLabel.setBounds(50, 50, 500, 500);
+     public Game() {
 
+         super("title");
+         setSize(1920, 1080);
+         setLayout(null);
+         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         //setLocationRelativeTo(null);
+         JPanel panel = new JPanel();
+         JLabel label = new JLabel("Привет, мир!");
+         Font newFont = new Font("Arial", Font.BOLD, 20);
+         label.setFont(newFont);panel.add(label);
+         setVisible(true);
 
 
+         //ImageIcon spriteIcon = new ImageIcon("src/images/full.png");
+         //JLabel spriteLabel = new JLabel(spriteIcon);
+         //panel.add(spriteLabel);
+         //panel.setLayout(null);
+        // spriteLabel.setBounds(50, 50, 500, 500);
 
-    }
 
-   
+//         JPanel panel = new JPanel()
+//         {@Override
+//         protected void paintComponent(Graphics g) {
+//             super.paintComponent(g);
+//             g.setColor(Color.RED);
+//             // Рисуем область: x=50, y=50, width=100, height=100
+//             g.fillRect(50, 50, 100, 100);
+//         }
+//         };
+         add(panel);
+         panel.setBounds(0, 0, 1920, 1080);
 
-    private Image image;
+         panel.setOpaque(false);
 
-    public void DrawingPanel() {
-        try {
-            image = ImageIO.read(new File("src/image/black/king.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+         panel.addMouseListener(new MouseAdapter() {
+             @Override
+             public void mouseClicked(MouseEvent e) {
+                 int x = e.getX();
+
+                 int y = e.getY()+50;
+
+                 if((x>600)&&(x<1400)&&(y>100)&&(y<900)){
+                     if ((f == 0)) {
+                         dxl = dx;
+
+                         dyl = dy;
+                         dx = x - x % 100;
+                         dy = y - y % 100;
+                         if(!arr[(dx-600)/100][(dy-100)/100].equals("0")) {
+                             f = 1;
+                             repaint(dx, dy, 100, 100);
+                             repaint(dxl, dyl, 100, 100);
+                         }
+                         else{
+                             repaint(dxl, dyl, 100, 100);
+                         }
+                     }
+                     else{
+                         ax = x - x % 100;
+                         ay = y - y % 100;
+                         f=0;
+                         last=(arr[(ax-600)/100][(ay-100)/100]+"");
+                         arr[(ax-600)/100][(ay-100)/100]= arr[(dx-600)/100][(dy-100)/100];
+                         arr[(dx-600)/100][(dy-100)/100]="0";
+                         repaint(ax,ay,100,100);
+                         repaint(dxl, dyl, 100, 100);
+                         repaint(dx, dy, 100, 100);
+                     }
+                 }
+                 else{
+                     f=0;
+                     repaint(dxl, dyl, 100, 100);
+                     repaint(dx, dy, 100, 100);
+//                     dx=-100;
+//                     dy=-100;
+                 }
+                 //System.out.print(dx+" "+dy);
+                 if((x>1500)&&(x<1800)&&(y>200)&&(y<300)){
+                     arr[(dx-600)/100][(dy-100)/100]=arr[(ax-600)/100][(ay-100)/100];
+                     arr[(ax-600)/100][(ay-100)/100]= last;
+
+                     repaint(ax,ay,100,100);
+                     repaint(dxl, dyl, 100, 100);
+                     repaint(dx, dy, 100, 100);
+                     System.out.println("zzzzzzz");
+                 }
+
+
+
+
+
+             }
+         });
+         Timer timer = new Timer(2000, e -> updateTime());
+         timer.start();
+         updateTime();
+         setVisible(true);
+     }
+
+     private void updateTime() {
+//         dx=700;
+//         dy=700;
+
+
+     }
+
+
+
+
+
+     private Image image;
+
+
 
     @Override
     public void paint(Graphics g) {
@@ -138,7 +230,7 @@ import java.awt.Graphics;
         Color c1 = new Color(255, 0, 0);
         for (int i = 0; i < 800; i += 100) {
             for (int j = 0; j < 800; j += 100) {
-                if (f % 2 == 0) {
+                if (f % 2 == 1) {
                     c1 = new Color(210, 105, 30);
                 } else {
                     c1 = new Color(255, 228, 181);
@@ -149,43 +241,54 @@ import java.awt.Graphics;
             }
             f++;
         }
-        for(int i=0;i<8;i++){
-            for(int j=0;j<8;j++){
-                if(arr[i][j]=="b"){
-                    g.drawImage(image2, i + 27, 210, 23*2, 40*2, null);
+        c1 = new Color(100, 228, 100,125);
+        g.setColor(c1);
+        g.fillRect(dx, dy, 100, 100);
+        c1 = new Color(100, 228, 100);
+        g.setColor(c1);
+        g.fillRect(1500, 200, 300, 100);
+        c1 = new Color(50, 8, 50);
+        Font newFont = new Font("Arial", Font.BOLD, 20);
+        g.setColor(c1);
+
+        g.drawString("Remove", 1600, 250);
+        for(int j=7;j>=0;j--){
+            for(int i=0;i<8;i++){
+                if(arr[i][j].equals("b")){
+                    g.drawImage(image2, i*100+600+dop[0][0], j*100+100+dop[0][1], 23*2, 40*2, null);
                 }
-                if(arr[i][j]=="w"){
-                    g.drawImage(wimage2, i + 27, 210, 23*2, 40*2, null);
+                if(arr[i][j].equals("w")){
+                    g.drawImage(wimage2, i*100+600+dop[0][0], j*100+100+dop[0][1], 23*2, 40*2, null);
                 }
-                if(arr[i][j]=="brook"){
-                    g.drawImage(image6, 633, 105, 34, 90, null);
+                if(arr[i][j].equals("brook")){
+                    g.drawImage(image6, i*100+600+dop[1][0], j*100+100+dop[1][1], 34, 90, null);
                 }
-                if(arr[i][j]=="wrook"){
-                    g.drawImage(wimage6, 633, 105, 34, 90, null);
+                if(arr[i][j].equals("wrook")){
+                    g.drawImage(wimage6, i*100+600+dop[1][0], j*100+100+dop[1][1], 34, 90, null);
                 }
-                if(arr[i][j]=="bponi"){
-                    g.drawImage(image5, i + 27, 210, 23*2, 40*2, null);
+                if(arr[i][j].equals("bponi")){
+                    g.drawImage(image5, i*100+600+dop[2][0], j*100+100+dop[2][1], 23*2, 40*2, null);
                 }
-                if(arr[i][j]=="wponi"){
-                    g.drawImage(wimage5, i + 27, 210, 23*2, 40*2, null);
+                if(arr[i][j].equals("wponi")){
+                    g.drawImage(wimage5, i*100+600+dop[2][0], j*100+100+dop[2][1], 23*2, 40*2, null);
                 }
-                if(arr[i][j]=="bofficer"){
-                    g.drawImage(image4, 633, 105, 34, 90, null);
+                if(arr[i][j].equals("bofficer")){
+                    g.drawImage(image4, i*100+600+dop[3][0], j*100+100+dop[3][1], 34, 90, null);
                 }
-                if(arr[i][j]=="wofficer"){
-                    g.drawImage(wimage4, 633, 105, 34, 90, null);
+                if(arr[i][j].equals("wofficer")){
+                    g.drawImage(wimage4, i*100+600+dop[3][0], j*100+100+dop[3][1], 34, 90, null);
                 }
-                if(arr[i][j]=="bqween"){
-                    g.drawImage(image3, i + 27, 210, 23*2, 40*2, null);
+                if(arr[i][j].equals("bqween")){
+                    g.drawImage(image3, i*100+600+dop[4][0], j*100+100+dop[4][1], (int)(23*1.7), (int)(40*2.3),null);
                 }
-                if(arr[i][j]=="wqween"){
-                    g.drawImage(wimage3, i + 27, 210, 23*2, 40*2, null);
+                if(arr[i][j].equals("wqween")){
+                    g.drawImage(wimage3, i*100+600+dop[4][0], j*100+100+dop[4][1], (int)(23*1.7), (int)(40*2.3), null);
                 }
-                if(arr[i][j]=="bking"){
-                    g.drawImage(image1, 633, 105, 34, 90, null);
+                if(arr[i][j].equals("bking")){
+                    g.drawImage(image1, i*100+600+dop[5][0], j*100+100+dop[5][1], 34, 90, null);
                 }
-                if(arr[i][j]=="wking"){
-                    g.drawImage(wimage1, 633, 105, 34, 90, null);
+                if(arr[i][j].equals("wking")){
+                    g.drawImage(wimage1, i*100+600+dop[5][0], j*100+100+dop[5][1], 34, 90, null);
                 }
             }
 
