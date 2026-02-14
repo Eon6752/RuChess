@@ -132,7 +132,7 @@ import java.awt.Graphics;
                      repaint(ax,ay,100,100);
                      repaint(dxl, dyl, 100, 100);
                      repaint(dx, dy, 100, 100);
-                     System.out.println("zzzzzzz");
+
                  }
 
 
