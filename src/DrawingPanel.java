@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.Graphics2D;
+
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -27,9 +27,9 @@ import javax.swing.*;
 
 import java.awt.*;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 import java.awt.Color;
-import java.awt.Graphics;
+
 
  class Game extends JFrame {
      int count = 0;
