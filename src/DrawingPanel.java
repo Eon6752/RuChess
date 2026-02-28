@@ -34,7 +34,7 @@ import java.awt.Color;
  class Game extends JFrame {
      int count = 0;
      int dx=-100,dy=-100,dxl,dyl,ax,ay;
-     int f=0;
+     String f="0";
      String last;
      String[][] arr =
              {{"brook", "b", "0", "0", "0", "0", "w", "wrook"},
@@ -90,35 +90,83 @@ import java.awt.Color;
                  int y = e.getY()+50;
 
                  if((x>600)&&(x<1400)&&(y>100)&&(y<900)){
-                     if ((f == 0)) {
+                     if ((f.equals("0"))) {
                          dxl = dx;
 
                          dyl = dy;
                          dx = x - x % 100;
                          dy = y - y % 100;
                          if(!arr[(dx-600)/100][(dy-100)/100].equals("0")) {
-                             f = 1;
                              repaint(dx, dy, 100, 100);
                              repaint(dxl, dyl, 100, 100);
+                             f=arr[(dx-600)/100][(dy-100)/100];
+
                          }
                          else{
                              repaint(dxl, dyl, 100, 100);
                          }
                      }
-                     else{
-                         ax = x - x % 100;
-                         ay = y - y % 100;
-                         f=0;
-                         last=(arr[(ax-600)/100][(ay-100)/100]+"");
-                         arr[(ax-600)/100][(ay-100)/100]= arr[(dx-600)/100][(dy-100)/100];
-                         arr[(dx-600)/100][(dy-100)/100]="0";
-                         repaint(ax,ay,100,100);
-                         repaint(dxl, dyl, 100, 100);
-                         repaint(dx, dy, 100, 100);
+                     else {
+                         if (f.equals("b")) {
+                             System.out.println((dxl-600)+"||"+(dyl-200)+"->"+(dx-600)+"||"+(dy-200));
+                             if (((!arr[(dx - 600) / 100][(dy - 100) / 100].equals("0")) && (dxl + 100 == dx || dxl - 100 == dx) && (dyl + 100 == dy)) ||
+                                     ((((dx == dxl) && (dyl + 100 == dy)) || ((dyl == 200) && (dyl + 200 == dy))) && (arr[(dx - 600) / 100][(dy - 100) / 100].equals("0")))){
+                                 ax = x - x % 100;
+                                 ay = y - y % 100;
+
+                                 last = (arr[(ax - 600) / 100][(ay - 100) / 100] + "");
+                                 arr[(ax - 600) / 100][(ay - 100) / 100] = arr[(dx - 600) / 100][(dy - 100) / 100];
+                                 arr[(dx - 600) / 100][(dy - 100) / 100] = "0";
+                                 repaint(ax, ay, 100, 100);
+                                 repaint(dxl, dyl, 100, 100);
+                                 repaint(dx, dy, 100, 100);
+                                 f = "0";
+                             }
+                         } else {
+//                         if(arr[i][j].equals("w")){
+//
+//                         }
+//                         if(arr[i][j].equals("brook")){
+//
+//                         }
+//                         if(arr[i][j].equals("wrook")){
+//
+//                         }
+//                         if(arr[i][j].equals("bponi")){
+//
+//                         }
+//                         if(arr[i][j].equals("wponi")){
+//
+//                         }
+//                         if(arr[i][j].equals("bofficer")){
+//
+//                         }
+//                         if(arr[i][j].equals("wofficer")){
+//                         }
+//                         if(arr[i][j].equals("bqween")){
+//                         }
+//                         if(arr[i][j].equals("wqween")){
+//                         }
+//                         if(arr[i][j].equals("bking")){
+//                         }
+//                         if(arr[i][j].equals("wking")){
+//
+//                         }
+                             ax = x - x % 100;
+                             ay = y - y % 100;
+
+                             last = (arr[(ax - 600) / 100][(ay - 100) / 100] + "");
+                             arr[(ax - 600) / 100][(ay - 100) / 100] = arr[(dx - 600) / 100][(dy - 100) / 100];
+                             arr[(dx - 600) / 100][(dy - 100) / 100] = "0";
+                             repaint(ax, ay, 100, 100);
+                             repaint(dxl, dyl, 100, 100);
+                             repaint(dx, dy, 100, 100);
+                             f = "0";
+                         }
                      }
                  }
                  else{
-                     f=0;
+                     f="0";
                      repaint(dxl, dyl, 100, 100);
                      repaint(dx, dy, 100, 100);
 //                     dx=-100;
