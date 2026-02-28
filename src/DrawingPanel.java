@@ -33,7 +33,7 @@ import java.awt.Color;
 
  class Game extends JFrame {
      int count = 0;
-     int dx=-100,dy=-100,dxl,dyl,ax,ay;
+     int dx=-100,dy=-100,dxl,dyl,ax,ay,dxll,dyll;
      String f="0";
      String last;
      String[][] arr =
@@ -96,6 +96,8 @@ import java.awt.Color;
                          dyl = dy;
                          dx = x - x % 100;
                          dy = y - y % 100;
+                         dxll=dx;
+                         dyll=dy;
                          if(!arr[(dx-600)/100][(dy-100)/100].equals("0")) {
                              repaint(dx, dy, 100, 100);
                              repaint(dxl, dyl, 100, 100);
@@ -108,17 +110,26 @@ import java.awt.Color;
                      }
                      else {
                          if (f.equals("b")) {
-                             System.out.println((dxl-600)+"||"+(dyl-200)+"->"+(dx-600)+"||"+(dy-200));
-                             if (((!arr[(dx - 600) / 100][(dy - 100) / 100].equals("0")) && (dxl + 100 == dx || dxl - 100 == dx) && (dyl + 100 == dy)) ||
-                                     ((((dx == dxl) && (dyl + 100 == dy)) || ((dyl == 200) && (dyl + 200 == dy))) && (arr[(dx - 600) / 100][(dy - 100) / 100].equals("0")))){
+                             dx = x - x % 100;
+                             dy = y - y % 100;
+                             System.out.println((dxll-600)+"||"+(dyll-100)+"->"+(dx-600)+"||"+(dy-100));
+                             for (int i = 0; i < 8; i++) {
+                                 for (int j = 0; j <8 ; j++) {
+                                     System.out.print(arr[i][j]+" ");
+                                 }
+                                 System.out.println();
+                             }
+
+                             if (((!arr[(dx - 600) / 100][(dy - 100) / 100].equals("0")) && (dxll + 100 == dx || dxll - 100 == dx) && (dyll + 100 == dy)) ||
+                                     ((((dx == dxll) && (dyll + 100 == dy)) || ((dyll == 200) && (dyll + 200 == dy))) && (arr[(dx - 600) / 100][(dy - 100) / 100].equals("0")))){
                                  ax = x - x % 100;
                                  ay = y - y % 100;
 
                                  last = (arr[(ax - 600) / 100][(ay - 100) / 100] + "");
-                                 arr[(ax - 600) / 100][(ay - 100) / 100] = arr[(dx - 600) / 100][(dy - 100) / 100];
-                                 arr[(dx - 600) / 100][(dy - 100) / 100] = "0";
+                                 arr[(ax - 600) / 100][(ay - 100) / 100] = arr[(dxll - 600) / 100][(dyll - 100) / 100];
+                                 arr[(dxll - 600) / 100][(dyll - 100) / 100] = "0";
                                  repaint(ax, ay, 100, 100);
-                                 repaint(dxl, dyl, 100, 100);
+                                 repaint(dxll, dyll, 100, 100);
                                  repaint(dx, dy, 100, 100);
                                  f = "0";
                              }
