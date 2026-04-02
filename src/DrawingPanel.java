@@ -112,16 +112,16 @@ import java.awt.Color;
                          if (f.equals("b")) {
                              dx = x - x % 100;
                              dy = y - y % 100;
-                             System.out.println((dxll-600)+"||"+(dyll-100)+"->"+(dx-600)+"||"+(dy-100));
-                             for (int i = 0; i < 8; i++) {
-                                 for (int j = 0; j <8 ; j++) {
-                                     System.out.print(arr[i][j]+" ");
-                                 }
-                                 System.out.println();
-                             }
+//                             System.out.println((dxll-600)+"||"+(dyll-100)+"->"+(dx-600)+"||"+(dy-100));
+//                             for (int i = 0; i < 8; i++) {
+//                                 for (int j = 0; j <8 ; j++) {
+//                                     System.out.print(arr[i][j]+" ");
+//                                 }
+//                                 System.out.println();
+//                             }
 
                              if (((!arr[(dx - 600) / 100][(dy - 100) / 100].equals("0")) && (dxll + 100 == dx || dxll - 100 == dx) && (dyll + 100 == dy)) ||
-                                     ((((dx == dxll) && (dyll + 100 == dy)) || ((dyll == 200) && (dyll + 200 == dy))) && (arr[(dx - 600) / 100][(dy - 100) / 100].equals("0")))){
+                                     (((dx == dxll) && ((dyll + 100 == dy) || ((dyll == 200) && (dyll + 200 == dy))) && (arr[(dx - 600) / 100][(dy - 100) / 100].equals("0"))))){
                                  ax = x - x % 100;
                                  ay = y - y % 100;
 
@@ -133,19 +133,55 @@ import java.awt.Color;
                                  repaint(dx, dy, 100, 100);
                                  f = "0";
                              }
-                         } else {
-//                         if(arr[i][j].equals("w")){
+
+                         }
+                         else if(f.equals("w")){
+                             dx = x - x % 100;
+                             dy = y - y % 100;
+
+
+                             if (((!arr[(dx - 600) / 100][(dy - 100) / 100].equals("0")) && (dxll + 100 == dx || dxll - 100 == dx) && (dyll - 100 == dy)) ||
+                                     (((dx == dxll) && ((dyll - 100 == dy) || ((dyll == 700) && (dyll - 200 == dy))) && (arr[(dx - 600) / 100][(dy - 100) / 100].equals("0"))))){
+                                 ax = x - x % 100;
+                                 ay = y - y % 100;
+
+                                 last = (arr[(ax - 600) / 100][(ay - 100) / 100] + "");
+                                 arr[(ax - 600) / 100][(ay - 100) / 100] = arr[(dxll - 600) / 100][(dyll - 100) / 100];
+                                 arr[(dxll - 600) / 100][(dyll - 100) / 100] = "0";
+                                 repaint(ax, ay, 100, 100);
+                                 repaint(dxll, dyll, 100, 100);
+                                 repaint(dx, dy, 100, 100);
+                                 f = "0";
+                             }
+                         }
+                         else if(f.equals("bponi")) {
+                             dx = x - x % 100;
+                             dy = y - y % 100;
+
+
+                             if (((!arr[(dx - 600) / 100][(dy - 100) / 100].equals("0")) && (dxll + 100 == dx || dxll - 100 == dx) && (dyll - 100 == dy)) ||
+                                     (((dx == dxll) && ((dyll - 100 == dy) || ((dyll == 700) && (dyll - 200 == dy))) && (arr[(dx - 600) / 100][(dy - 100) / 100].equals("0"))))) {
+                                 ax = x - x % 100;
+                                 ay = y - y % 100;
+
+                                 last = (arr[(ax - 600) / 100][(ay - 100) / 100] + "");
+                                 arr[(ax - 600) / 100][(ay - 100) / 100] = arr[(dxll - 600) / 100][(dyll - 100) / 100];
+                                 arr[(dxll - 600) / 100][(dyll - 100) / 100] = "0";
+                                 repaint(ax, ay, 100, 100);
+                                 repaint(dxll, dyll, 100, 100);
+                                 repaint(dx, dy, 100, 100);
+                                 f = "0";
+                             }
+                         }
+                         else {
 //
-//                         }
 //                         if(arr[i][j].equals("brook")){
 //
 //                         }
 //                         if(arr[i][j].equals("wrook")){
 //
 //                         }
-//                         if(arr[i][j].equals("bponi")){
 //
-//                         }
 //                         if(arr[i][j].equals("wponi")){
 //
 //                         }
