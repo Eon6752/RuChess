@@ -159,8 +159,25 @@ import java.awt.Color;
                              dy = y - y % 100;
 
 
-                             if (((!arr[(dx - 600) / 100][(dy - 100) / 100].equals("0")) && (dxll + 100 == dx || dxll - 100 == dx) && (dyll - 100 == dy)) ||
-                                     (((dx == dxll) && ((dyll - 100 == dy) || ((dyll == 700) && (dyll - 200 == dy))) && (arr[(dx - 600) / 100][(dy - 100) / 100].equals("0"))))) {
+                             if (((Math.abs(dxll-dx)==100) && (Math.abs(dyll-dy)==200))||((Math.abs(dxll-dx)==200) && (Math.abs(dyll-dy)==100))) {
+                                 ax = x - x % 100;
+                                 ay = y - y % 100;
+
+                                 last = (arr[(ax - 600) / 100][(ay - 100) / 100] + "");
+                                 arr[(ax - 600) / 100][(ay - 100) / 100] = arr[(dxll - 600) / 100][(dyll - 100) / 100];
+                                 arr[(dxll - 600) / 100][(dyll - 100) / 100] = "0";
+                                 repaint(ax, ay, 100, 100);
+                                 repaint(dxll, dyll, 100, 100);
+                                 repaint(dx, dy, 100, 100);
+                                 f = "0";
+                             }
+                         }
+                         else if(f.equals("wponi")) {
+                             dx = x - x % 100;
+                             dy = y - y % 100;
+
+
+                             if (((Math.abs(dxll-dx)==100) && (Math.abs(dyll-dy)==200))||((Math.abs(dxll-dx)==200) && (Math.abs(dyll-dy)==100))) {
                                  ax = x - x % 100;
                                  ay = y - y % 100;
 
