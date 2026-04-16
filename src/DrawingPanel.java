@@ -190,6 +190,31 @@ import java.awt.Color;
                                  f = "0";
                              }
                          }
+                         else if(f.equals("wofficer")) {
+                             dx = x - x % 100;
+                             dy = y - y % 100;
+
+                            int f1=1;
+                             if ((Math.abs(dx-dxll)==Math.abs(dy-dyll))&&(arr[dx][dy].charAt(0)!='w')) {
+                                 for (int i = 0; i <= Math.abs(dx - dxll); i++) {
+                                     if ((!arr[Math.min(dx, dxll) / 100 + i][Math.min(dy, dyll) / 100 + i].equals("0")) && (Math.min(dx, dxll) / 100 + i != dx)) {
+                                         f1 = 0;
+                                     }
+                                 }
+                                 if (f1 == 1) {
+                                     ax = x - x % 100;
+                                     ay = y - y % 100;
+
+                                     last = (arr[(ax - 600) / 100][(ay - 100) / 100] + "");
+                                     arr[(ax - 600) / 100][(ay - 100) / 100] = arr[(dxll - 600) / 100][(dyll - 100) / 100];
+                                     arr[(dxll - 600) / 100][(dyll - 100) / 100] = "0";
+                                     repaint(ax, ay, 100, 100);
+                                     repaint(dxll, dyll, 100, 100);
+                                     repaint(dx, dy, 100, 100);
+                                     f = "0";
+                                 }
+                             }
+                         }
                          else {
 //
 //                         if(arr[i][j].equals("brook")){
